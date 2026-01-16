@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esteler Abah - Promo Es Teler & Eskrim</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  background: #f5fffc;
+  color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+  position: relative;
+  background: url("banner.jpg") center/cover no-repeat;
+  height: 280px;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.header-text {
+  position: relative;
+  z-index: 2;
+}
+
+.header-text h1 {
+  font-size: 2rem;
+}
+
+.header-text p {
+  font-size: 1rem;
+}
+
+/* ===== MUSIC PLAYER ===== */
+.music-player {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 3;
+}
+
+.music-player button {
+  background: #00b894;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.music-player button:hover {
+  background: #019874;
+}
+
+/* ===== CONTENT ===== */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.promo {
+  background: #fff3cd;
+  border-left: 6px solid #f1c40f;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body h3 {
+  color: #00b894;
+}
+
+.price {
+  color: #e17055;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #1ebe5d;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #00b894;
+  color: white;
+  text-align: center;
+  padding: 18px;
+  margin-top: 40px;
+}
+
+.store-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.store-link img {
+  height: 38px;
+  cursor: pointer;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  header {
+    height: 220px;
+  }
+
+  .header-text h1 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- Music -->
+  <div class="music-player">
+    <button id="musicBtn" onclick="toggleMusic()">▶ Play</button>
+  </div>
+
+  <!-- Header Text -->
+  <div class="header-text">
+    <h1>Esteler Abah</h1>
+    <p>Es Teler & Eskrim – Segar dan Lezat!</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="promo">
+    <h2>🔥 PROMO SPESIAL!</h2>
+    <p>Segarnya Es Teler & Eskrim, cocok untuk cuaca panas & acara keluarga!</p>
+  </div>
+
+  <section class="products">
+
+    <div class="card">
+      <img src="banner.jpg">
+      <div class="card-body">
+        <h3>Es Teler Spesial</h3>
+        <div class="price">Harga Terjangkau</div>
+        <a class="btn" onclick="order('Es Teler Spesial')">Order WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="banner.jpg">
+      <div class="card-body">
+        <h3>Eskrim Aneka Rasa</h3>
+        <div class="price">Segar & Creamy</div>
+        <a class="btn" onclick="order('Eskrim Aneka Rasa')">Order WhatsApp</a>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  <p>📞 Order WA: <b>0838-9574-4805</b></p>
+
+  <div class="store-link">
+    <span>Download App:</span>
+    <a href="https://play.google.com/store/apps/details?id=CONTOH.APP" target="_blank">
+      <img src="playstore.png" alt="Google Play Store">
+    </a>
+  </div>
+
+  <p>&copy; 2026 Esteler Abah</p>
+  <p>Powered by iG@benyoriki</p>
+</footer>
+
+<!-- AUDIO -->
+<audio id="musik" src="musik.mp3"></audio>
+
+<script>
+const audio = document.getElementById("musik");
+const btn = document.getElementById("musicBtn");
+
+function toggleMusic() {
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "⏸ Pause";
+  } else {
+    audio.pause();
+    btn.textContent = "▶ Play";
+  }
+}
+
+audio.addEventListener("ended", () => {
+  btn.textContent = "▶ Play";
+});
+
+function order(product) {
+  const phone = "6283895744805";
+  const msg = `Halo, saya mau pesan ${product}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+</script>
+
+</body>
+</html>
